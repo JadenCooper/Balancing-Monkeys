@@ -12,14 +12,6 @@ public class PlayerControler : MonoBehaviour
     }
     public void Freeze()
     {
-        if (rb2d.gravityScale == 0f)
-        {
-            rb2d.gravityScale = 1f;
-        }
-        else
-        {
-            rb2d.gravityScale = 0f;
-            rb2d.velocity = Vector3.zero;
-        }
+        rb2d.simulated = !rb2d.simulated;
     }
 }
