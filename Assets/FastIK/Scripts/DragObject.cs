@@ -4,29 +4,33 @@ using UnityEngine;
 
 public class DragObject : MonoBehaviour
 {
+    private Rigidbody2D body;
 
-    private Vector3 mOffset;
-    private float mZCoord;
+    public float force;
+
+    private Vector3 mouseOffset;
+
+    private float dragZOffset = 0.1f;
+
+    void Start()
+    {
+        body = GetComponent<Rigidbody2D>();
+    }
 
     void OnMouseDown()
     {
-        mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
-        // Store offset = gameobject world pos - mouse world pos
-        mOffset = gameObject.transform.position - GetMouseAsWorldPoint();
-    }
+        // calculate the offset between the mouse position and the body position
+        mouseOffset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, dragZOffset));
 
-    private Vector3 GetMouseAsWorldPoint()
-    {
-        // Pixel coordinates of mouse (x,y)
-        Vector3 mousePoint = Input.mousePosition;
-        // z coordinate of game object on screen
-        mousePoint.z = mZCoord;
-        // Convert it to world points
-        return Camera.main.ScreenToWorldPoint(mousePoint);
+        //body.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     void OnMouseDrag()
     {
-        transform.position = GetMouseAsWorldPoint() + mOffset;
+        // move the body based on the mouse position
+        Vector3 newPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, dragZOffset));
+        body.MovePosition(newPosition + mouseOffset);
     }
-}   
+
+    void 
+}
