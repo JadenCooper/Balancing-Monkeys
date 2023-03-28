@@ -14,4 +14,14 @@ public class PlayerControler : MonoBehaviour
     {
         //rb2d.simulated = !rb2d.simulated;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Pickup"))
+        {
+            Debug.Log("Hit Pickup");
+            collision.gameObject.tag = gameObject.tag;
+            collision.GetComponent<Pickup>().PreformPickUp();
+        }
+    }
 }

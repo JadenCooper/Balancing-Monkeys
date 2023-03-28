@@ -25,10 +25,12 @@ public class PlayerManager : MonoBehaviour
         if (currentPlayerIndex == 0)
         {
             // Changes Which Team THe Monkey Is Spawning For Next Spawn
+            newMonkey.tag = "TeamOne";
             currentPlayerIndex++;
         }
         else
         {
+            newMonkey.tag = "TeamTwo";
             currentPlayerIndex--;
             MonkeyTeamLeft--; // If We End Up Having A Monkey Life Limit
             Debug.Log(MonkeyTeamLeft);
