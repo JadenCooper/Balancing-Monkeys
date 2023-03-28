@@ -12,6 +12,6 @@ public class PlayerControler : MonoBehaviour
     }
     public void Freeze()
     {
-        rb2d.simulated = !rb2d.simulated;
+        //rb2d.simulated = !rb2d.simulated;
     }
 }

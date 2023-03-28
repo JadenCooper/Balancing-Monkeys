@@ -9,7 +9,11 @@ public class PlayerInput : MonoBehaviour
     private InputActionReference freeze;
 
     public PlayerControler currentPlayer;
-
+    private PlayerManager playerManager;
+    private void Start()
+    {
+        playerManager = GetComponent<PlayerManager>();
+    }
     private void OnEnable()
     {
         freeze.action.performed += PreformFreeze;
@@ -23,5 +27,6 @@ public class PlayerInput : MonoBehaviour
     private void PreformFreeze(InputAction.CallbackContext obj)
     {
         currentPlayer.Freeze();
+        playerManager.SwitchPlayer();
     }
 }
