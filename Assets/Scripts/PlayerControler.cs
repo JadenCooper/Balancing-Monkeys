@@ -12,7 +12,7 @@ public class PlayerControler : MonoBehaviour
     }
     public void Freeze()
     {
-        //rb2d.simulated = !rb2d.simulated;
+        rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
