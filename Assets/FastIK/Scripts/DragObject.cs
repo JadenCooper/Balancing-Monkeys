@@ -30,7 +30,5 @@ public class DragObject : MonoBehaviour
         // move the body based on the mouse position
         Vector3 newPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, dragZOffset));
         body.MovePosition(newPosition + mouseOffset);
-    }
-
-    void 
+    }    
 }
