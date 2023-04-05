@@ -10,11 +10,6 @@ public class PlayerControler : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
     }
-    public void Freeze()
-    {
-        rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Pickup"))

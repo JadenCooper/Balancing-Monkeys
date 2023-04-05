@@ -32,5 +32,4 @@ public class DragObject : MonoBehaviour
         body.MovePosition(newPosition + mouseOffset);
     }
 
-    void 
 }

@@ -26,7 +26,6 @@ public class PlayerInput : MonoBehaviour
 
     private void PreformFreeze(InputAction.CallbackContext obj)
     {
-        currentPlayer.Freeze();
         playerManager.SwitchPlayer();
     }
 }
