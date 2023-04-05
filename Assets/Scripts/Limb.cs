@@ -21,6 +21,9 @@ public class Limb : MonoBehaviour
     {
         Debug.Log(collision.gameObject.name);
         Debug.Log("Frozen");
-        rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+        if (!playerControler.inSafeZone)
+        {
+            rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
     }
 }

@@ -12,6 +12,8 @@ public class DragObject : MonoBehaviour
 
     private float dragZOffset = 0.1f;
 
+    private bool canDrag = true;
+
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -20,7 +22,10 @@ public class DragObject : MonoBehaviour
     void OnMouseDown()
     {
         // calculate the offset between the mouse position and the body position
-        mouseOffset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, dragZOffset));
+        if (canDrag)
+        {
+            mouseOffset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, dragZOffset));
+        }
 
         //body.constraints = RigidbodyConstraints2D.FreezeAll;
     }
@@ -28,8 +33,19 @@ public class DragObject : MonoBehaviour
     void OnMouseDrag()
     {
         // move the body based on the mouse position
-        Vector3 newPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, dragZOffset));
-        body.MovePosition(newPosition + mouseOffset);
+        if (canDrag)
+        {
+            Vector3 newPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, dragZOffset));
+            body.MovePosition(newPosition + mouseOffset);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Platform")
+        {
+            canDrag = false;
+        }
     }
 
 }
